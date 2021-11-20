@@ -6,19 +6,14 @@ void conta_digitos(int x, int &pares, int &impares);
 
 int main()
 {
-    int num, impar, par, sair = 1;
+    int num, impar, par;
     cout << "Daremos a quantidade de pares e impares em cada digito.\n";
     cout << "Digite um numero inteiro, positivo:\n";
     cin >> num;
     conta_digitos(num, par, impar);
     cout << "impar: " << impar << endl;
     cout << "par: " << par;
-    
-    cout << "\nDigite 0 para sair\n";
-    cin >> sair;
-    if(!sair){
-        return 0;
-    }
+    return 0;
 }
 
 void conta_digitos(int x, int &pares, int &impares){

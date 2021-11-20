@@ -6,18 +6,13 @@ void seq_collatz(int x, int &maior, int &cont);
 
 int main()
 {
-    int num, maior_num, total_termos, sair = 1;
+    int num, maior_num, total_termos;
     cout << "Daremos a sequencia da conjectura de Collatz.\n";
     cout << "Digite um numero inteiro positivo:\n";
     cin >> num;
     seq_collatz(num, maior_num, total_termos);
     cout << "maior numero: " << maior_num << endl << "total de termos: " << total_termos << endl;
-
-    cout << "\nDigite 0 para sair\n";
-    cin >> sair;
-    if(!sair){
-        return 0;
-    }
+    return 0;
 }
 
 void seq_collatz(int x, int &maior, int &cont){
