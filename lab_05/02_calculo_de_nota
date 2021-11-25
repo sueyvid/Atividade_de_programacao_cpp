@@ -1,0 +1,58 @@
+#include <iostream>
+#include <iomanip>
+
+using namespace std;
+
+void notas(float n1, float n2, float n3, float &media, bool &fazer_reposicao, float &nota_necessaria);
+
+int main()
+{
+    float x1, x2, x3, media_x, x_necessario;
+    bool reposicao;
+    cin >> x1 >> x2 >> x3;
+    notas(x1, x2, x3, media_x, reposicao, x_necessario);
+    if(reposicao){
+        cout << "Media: " << fixed << setprecision(2) << media_x;
+        cout << ": em reposicao (nota necessaria: " << x_necessario << ")";
+    }
+    else{
+        if(media_x >= 5){
+            cout << "Media " << fixed << setprecision(2) << media_x << ": aprovado";
+        }
+        else{
+            cout << "Media " << fixed << setprecision(2) << media_x << ": reprovado";
+        }
+    }
+    return 0;
+}
+
+void notas(float n1, float n2, float n3, float &media, bool &fazer_reposicao, float &nota_necessaria){
+    float menor_nota;
+    bool notas_minimas;
+    
+    if(n1 <= n2 && n1 <= n3){
+        menor_nota = n1;
+    }
+    else if(n2 <= n1 && n2 <= n3){
+        menor_nota = n2;
+    }
+    else{
+        menor_nota = n3;
+    }
+    
+    notas_minimas = n1 >= 3 && n2 >= 3 && n3 >= 3;
+    
+    media = (n1+n2+n3)/3;
+    
+    if((notas_minimas && media < 5) || (!notas_minimas && media > 3)){
+        fazer_reposicao = true;
+        nota_necessaria = 15-(n1+n2+n3-menor_nota);
+        if(nota_necessaria < 3){
+            nota_necessaria = 3;
+        }
+    }
+    else{
+        fazer_reposicao = false;
+    }
+    
+}
