@@ -12,6 +12,8 @@ struct Matriz{
 };
 
 void le_matriz(Matriz &A);
+int prod_escalar(int v1[], int v2[], int n);
+Matriz matriz_transposta(Matriz A);
 Matriz prod_matricial(Matriz A, Matriz B);
 void imprime_matriz(Matriz A);
 
@@ -41,12 +43,34 @@ void le_matriz(Matriz &A){
     }
 }
 
+int prod_escalar(int v1[], int v2[], int n){
+    int i, prod = 0;
+    for(i = 0; i < n; i++){
+        prod += v1[i] * v2[i];
+    }
+    return prod;
+}
+
+Matriz matriz_transposta(Matriz A){
+    int i, j;
+    Matriz aux;
+    aux.nl = A.nc;
+    aux.nc = A.nl;
+    for(i = 0; i < A.nl; i++){
+        for(j = 0; j < A.nc; j++){
+            aux.m[j][i] = A.m[i][j];
+        }
+    }
+    return aux;
+}
+
 Matriz prod_matricial(Matriz A, Matriz B){
-    int i, j, k, np;
-    Matriz C;
+    int i, j, np;
+    Matriz C, aux;
     C.nl = A.nl;
     C.nc = B.nc;
     np = A.nc;
+    aux = matriz_transposta(B);
     
     if(A.nc != B.nl){
         exit(0);
@@ -60,9 +84,7 @@ Matriz prod_matricial(Matriz A, Matriz B){
     
     for(i = 0; i < C.nl; i++){
         for(j = 0; j < C.nc; j++){
-            for(k = 0; k < np; k++){
-                C.m[i][j] += A.m[i][k] * B.m[k][j];
-            }
+            C.m[i][j] = prod_escalar(A.m[i], B.m[j], np);
         }
     }
     

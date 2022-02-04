@@ -41,7 +41,7 @@ void le_matriz(Matriz &A){
 bool idempotente(Matriz A){
     int i, j, k;
     Matriz aux;
-    aux = A;
+    aux.n = A.n;
     
     for(i = 0; i < aux.n; i++){
         for(j = 0; j < aux.n; j++){
