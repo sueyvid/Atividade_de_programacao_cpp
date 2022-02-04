@@ -78,13 +78,7 @@ Matriz prod_matricial(Matriz A, Matriz B){
     
     for(i = 0; i < C.nl; i++){
         for(j = 0; j < C.nc; j++){
-            C.m[i][j] = 0;
-        }
-    }
-    
-    for(i = 0; i < C.nl; i++){
-        for(j = 0; j < C.nc; j++){
-            C.m[i][j] = prod_escalar(A.m[i], B.m[j], np);
+            C.m[i][j] = prod_escalar(A.m[i], aux.m[j], np);
         }
     }
     
